@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>NER Logistics Intelligence</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Leaflet Map -->
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🚚
+            </div>
+
+            <div>
+                <h2>NER-LI</h2>
+
+                <span>
+                    Logistics Intelligence
+                </span>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <button
+                class="nav-btn active"
+                onclick="showSection('dashboard')">
+
+                🏠
+                <span>Dashboard</span>
+
+            </button>
+
+
+            <button
+                class="nav-btn"
+                onclick="showSection('map')">
+
+                🗺️
+                <span>Live Map</span>
+
+            </button>
+
+
+            <button
+                class="nav-btn"
+                onclick="showSection('risk')">
+
+                🤖
+                <span>AI Risk</span>
+
+            </button>
+
+
+            <button
+                class="nav-btn"
+                onclick="showSection('report')">
+
+                📷
+                <span>Report Incident</span>
+
+            </button>
+
+        </nav>
+
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            <div>
+
+                <strong>System Online</strong>
+
+                <small>
+                    All services operational
+                </small>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="main">
+
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    NER Logistics Command Center
+                </h1>
+
+                <p>
+                    Real-time transportation &
+                    accessibility monitoring
+                </p>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="live-indicator">
+
+                    <span></span>
+
+                    LIVE
+
+                </div>
+
+
+                <div class="notification">
+
+                    🔔
+
+                    <b>3</b>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================
+             DASHBOARD
+        ====================================== -->
+
+        <section
+            id="dashboard"
+            class="section">
+
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        Operations Overview
+                    </h2>
+
+                    <p>
+                        Current logistics network status
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        🚚
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Active Vehicles
+                        </span>
+
+                        <h3>
+                            43
+                        </h3>
+
+                        <small class="positive">
+                            ↑ 8% from yesterday
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        📦
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Active Shipments
+                        </span>
+
+                        <h3>
+                            127
+                        </h3>
+
+                        <small class="positive">
+                            ↑ 12 today
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Accessible Routes
+                        </span>
+
+                        <h3>
+                            82%
+                        </h3>
+
+                        <small class="positive">
+                            ↑ 4% this week
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card danger-card">
+
+                    <div class="stat-icon red">
+                        ⚠️
+                    </div>
+
+                    <div>
+
+                        <span>
+                            High Risk Routes
+                        </span>
+
+                        <h3>
+                            8
+                        </h3>
+
+                        <small class="negative">
+                            ↑ 2 since morning
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ALERT -->
+
+            <div class="critical-alert">
+
+                <div class="alert-symbol">
+                    🚨
+                </div>
+
+                <div class="alert-content">
+
+                    <h3>
+                        Critical Route Alert
+                    </h3>
+
+                    <p>
+                        Landslide risk detected on
+                        the Tezpur → Tawang route.
+                        Immediate route assessment
+                        recommended.
+                    </p>
+
+                </div>
+
+                <button
+                    onclick="showSection('risk')">
+
+                    Analyze Route →
+
+                </button>
+
+            </div>
+
+
+
+            <!-- LOWER DASHBOARD -->
+
+            <div class="dashboard-grid">
+
+
+                <!-- SHIPMENT -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Priority Shipment
+                            </h3>
+
+                            <p>
+                                Current high-priority delivery
+                            </p>
+
+                        </div>
+
+                        <span class="badge warning">
+                            AT RISK
+                        </span>
+
+                    </div>
+
+
+                    <div class="shipment-main">
+
+                        <div class="shipment-icon">
+                            💊
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Shipment #NER104
+                            </h3>
+
+                            <p>
+                                Medical Supplies
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="route-line">
+
+                        <div>
+
+                            <span>
+                                FROM
+                            </span>
+
+                            <strong>
+                                Guwahati
+                            </strong>
+
+                        </div>
+
+
+                        <div class="route-arrow">
+                            ─────→
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                TO
+                            </span>
+
+                            <strong>
+                                Tawang
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="shipment-details">
+
+                        <div>
+
+                            <span>Vehicle</span>
+
+                            <strong>
+                                NER-102
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>Speed</span>
+
+                            <strong>
+                                42 km/h
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>ETA</span>
+
+                            <strong>
+                                6h 10m
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RISK -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Network Risk
+                            </h3>
+
+                            <p>
+                                Current route conditions
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="risk-stat">
+
+                        <div class="risk-number">
+                            82%
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Critical
+                            </strong>
+
+                            <p>
+                                Tezpur → Tawang
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div class="progress-fill"
+                             style="width:82%">
+                        </div>
+
+                    </div>
+
+
+                    <div class="risk-breakdown">
+
+                        <div>
+
+                            <span>
+                                🌧️ Rainfall
+                            </span>
+
+                            <strong>
+                                90
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                🛣️ Road
+                            </span>
+
+                            <strong>
+                                80
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                ⛰️ Landslide
+                            </span>
+
+                            <strong>
+                                90
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             MAP
+        ====================================== -->
+
+        <section
+            id="map"
+            class="section hidden">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        🗺️ Live Logistics Map
+                    </h2>
+
+                    <p>
+                        Vehicle and route monitoring
+                    </p>
+
+                </div>
+
+                <div class="live-indicator">
+
+                    <span></span>
+
+                    LIVE TRACKING
+
+                </div>
+
+            </div>
+
+
+            <div id="mapContainer"></div>
+
+
+            <div
+                id="vehicleInfo"
+                class="vehicle-info">
+
+                <h3>
+                    🚚 Select a vehicle
+                </h3>
+
+                <p>
+                    Click a vehicle marker to
+                    view shipment information.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             AI RISK
+        ====================================== -->
+
+        <section
+            id="risk"
+            class="section hidden">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        🤖 AI Route Risk Analysis
+                    </h2>
+
+                    <p>
+                        Evaluate transportation
+                        disruption probability
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="risk-page">
+
+
+                <div class="panel">
+
+                    <h3>
+                        Route Conditions
+                    </h3>
+
+
+                    <label>
+                        🌧️ Rainfall
+                    </label>
+
+                    <input
+                        type="number"
+                        id="rainfall"
+                        value="80"
+                        min="0"
+                        max="100">
+
+
+                    <label>
+                        🛣️ Road Condition
+                    </label>
+
+                    <input
+                        type="number"
+                        id="road"
+                        value="70"
+                        min="0"
+                        max="100">
+
+
+                    <label>
+                        ⛰️ Landslide History
+                    </label>
+
+                    <input
+                        type="number"
+                        id="landslide"
+                        value="80"
+                        min="0"
+                        max="100">
+
+
+                    <label>
+                        🚦 Traffic
+                    </label>
+
+                    <input
+                        type="number"
+                        id="traffic"
+                        value="40"
+                        min="0"
+                        max="100">
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="analyzeRoute()">
+
+                        🔍 Analyze Route
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="riskResult"
+                    class="panel result">
+
+                    <div class="empty-result">
+
+                        <span>
+                            🤖
+                        </span>
+
+                        <h3>
+                            Awaiting Analysis
+                        </h3>
+
+                        <p>
+                            Enter route conditions
+                            and run the AI risk analysis.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             INCIDENT REPORT
+        ====================================== -->
+
+        <section
+            id="report"
+            class="section hidden">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        📷 Report Road Incident
+                    </h2>
+
+                    <p>
+                        Submit field intelligence
+                        for route assessment
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel report-panel">
+
+
+                <label>
+                    Incident Type
+                </label>
+
+                <select id="incidentType">
+
+                    <option>
+                        Landslide
+                    </option>
+
+                    <option>
+                        Flood
+                    </option>
+
+                    <option>
+                        Road Damage
+                    </option>
+
+                    <option>
+                        Bridge Damage
+                    </option>
+
+                    <option>
+                        Traffic Blockage
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Severity
+                </label>
+
+                <select id="severity">
+
+                    <option>
+                        Low
+                    </option>
+
+                    <option>
+                        Medium
+                    </option>
+
+                    <option>
+                        High
+                    </option>
+
+                    <option>
+                        Critical
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                    placeholder="Describe the incident...">
+                </textarea>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="submitReport()">
+
+                    📤 Submit Incident
+
+                </button>
+
+
+                <div id="reportResult"></div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+<!-- Leaflet -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+<!-- Your JavaScript -->
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
